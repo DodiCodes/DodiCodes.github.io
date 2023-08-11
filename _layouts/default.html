@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
 	<head>
-		test
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% if page.collectionpage %}
+			{% assign collectiondata = site.collections | where: "label", page.collectionpage | first %}
+			<title>{{ collectiondata.title }} - {{ site.title }}</title>
+		{% elsif page.title %}
+			<title>{{ page.title }} - {{ site.title }}</title>
+		{% else %}
+			<title>{{ site.title }}</title>
+		{% endif %}
+
+		<link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
+
+		{% if site.favicon %}
+			<link rel="shortcut icon" href="{{ site.favicon }}">
+		{% else %}
+			<link rel="shortcut icon" href="{{ site.logo }}">
+		{% endif %}
 
 	</head>
 	<body>
